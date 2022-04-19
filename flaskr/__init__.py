@@ -1,6 +1,8 @@
 import os
 
 from flask import Flask
+from . import movies
+from . import db
 
 def create_app():
     # create and configure the app
@@ -15,10 +17,8 @@ def create_app():
     except OSError:
         pass
 
-    from . import db
     db.init_app(app)
-
-    from . import movies
+    
     app.register_blueprint(movies.bp)
 
     return app
